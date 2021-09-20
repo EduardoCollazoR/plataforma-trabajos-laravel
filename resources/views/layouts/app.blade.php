@@ -17,6 +17,9 @@
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+    @yield('styles')
+
+
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
@@ -55,7 +58,7 @@
 
                         <span class="text-gray-300 text-sm pr-4">{{ Auth::user()->name }}</span>
 
-                        <a class="no-underline hover:underline hover:text-gray-300 p-3" href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <a class="text-white no-underline hover:underline hover:text-gray-300 p-3" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
                         </a>
@@ -81,6 +84,8 @@
             @yield('content')
         </main>
     </div>
+
+    @yield('scripts')
 </body>
 
 </html>
