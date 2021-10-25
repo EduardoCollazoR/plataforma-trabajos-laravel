@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VacanteController;
 use App\Http\Controllers\CandidatoController;
+use App\Http\Controllers\NotificacionesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +33,18 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vacantes.create');
     Route::post('/vacantes', [VacanteController::class, 'store'])->name('vacantes.store');
 
-    //subir imagen 
+    //subir imagen
     Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
     Route::post('/vacantes/borrarimagen', [VacanteController::class, 'borrarimagen'])->name('vacantes.borrar');
+
+    //notificaciones
+    Route::get('/notificaciones', [NotificacionesController::class, 'notificaciones'])->name('notificaciones');
 });
 
 
-//enviar datos para una vacante 
+//enviar datos para una vacante
 
+Route::get('/candidatos/{id}', [CandidatoController::class, 'index'])->name('candidatos.index');
 Route::post('/candidatos/store', [CandidatoController::class, 'store'])->name('candidatos.store');
 
 //muestra los trabajos sin authentication
