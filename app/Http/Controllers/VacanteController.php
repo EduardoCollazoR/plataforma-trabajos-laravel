@@ -65,7 +65,7 @@ class VacanteController extends Controller
             'skills' => 'required'
         ]);
 
-        //almacenar 
+        //almacenar
         auth()->user()->vacantes()->create([
             'titulo' => $data['titulo'],
             'imagen' => $data['imagen'],
@@ -122,9 +122,11 @@ class VacanteController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Vacante $vacante, Request $request)
     {
-        //
+
+        $vacante->delete();
+        return response()->json(['mensaje' => 'Se elimino la vacante' . $vacante->titulo]);
     }
 
     public function imagen(Request $request)
@@ -148,5 +150,17 @@ class VacanteController extends Controller
             }
             return response('Imagen eliminada', 200);
         }
+    }
+
+    //cambia estado de una vacante
+    public function estado(Request $request, Vacante $vacante)
+    {
+        //leer nuevo estado y guardar
+        $vacante->activa = $request->estado;
+
+        //guardar
+        $vacante->save();
+
+        return response()->json(['respuesta' => 'Correcto']);
     }
 }

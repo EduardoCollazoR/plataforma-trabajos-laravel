@@ -32,13 +32,17 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/vacantes', [VacanteController::class, 'index'])->name('vacantes.index');
     Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vacantes.create');
     Route::post('/vacantes', [VacanteController::class, 'store'])->name('vacantes.store');
+    Route::delete('/vacantes/{vacante}',  [VacanteController::class, 'destroy'])->name('vacantes.destroy');
 
     //subir imagen
     Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
     Route::post('/vacantes/borrarimagen', [VacanteController::class, 'borrarimagen'])->name('vacantes.borrar');
 
+    //cambiar estadod de vacante
+    Route::get('/vacantes/{vacante}', [NotificacionesController::class, 'notificaciones'])->name('notificaciones');
+
     //notificaciones
-    Route::get('/notificaciones', [NotificacionesController::class, 'notificaciones'])->name('notificaciones');
+    Route::get('/notificaciones', [VacanteController::class, 'estado'])->name('vacantes.estado');
 });
 
 
