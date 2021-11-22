@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
 // editor
 .medium-editor-toolbar-active {
     visibility: visible;
@@ -64,7 +68,7 @@
     }
 }
 
-//paginador 
+//paginador
 .pagination {
     display: flex;
     justify-content: center;

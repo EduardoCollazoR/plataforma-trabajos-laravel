@@ -8,7 +8,7 @@ require('./bootstrap');
 require('lightbox2');
 import VueSweetAlert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import Vue from 'vue/types/umd';
+// import Vue from 'vue/types/umd';
 
 window.Vue = require('vue').default;
 

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VacanteController;
 use App\Http\Controllers\CandidatoController;
 use App\Http\Controllers\NotificacionesController;
+use App\Http\Controllers\InicioController;
+use App\Http\Controllers\CategoriaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,13 +19,11 @@ use App\Http\Controllers\NotificacionesController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 
 Auth::routes(['verify' => true]);
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 
 //rutas protegidas
@@ -32,7 +32,11 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/vacantes', [VacanteController::class, 'index'])->name('vacantes.index');
     Route::get('/vacantes/create', [VacanteController::class, 'create'])->name('vacantes.create');
     Route::post('/vacantes', [VacanteController::class, 'store'])->name('vacantes.store');
-    Route::delete('/vacantes/{vacante}',  [VacanteController::class, 'destroy'])->name('vacantes.destroy');
+    Route::delete('/vacantes/{vacante}/edit',  [VacanteController::class, 'edit'])->name('vacantes.edit');
+
+    Route::get('/vacantes/{vacante}',  [VacanteController::class, 'destroy'])->name('vacantes.destroy');
+
+    Route::put('/vacantes/{vacante}',  [VacanteController::class, 'update'])->name('vacantes.update');
 
     //subir imagen
     Route::post('/vacantes/imagen', [VacanteController::class, 'imagen'])->name('vacantes.imagen');
@@ -45,7 +49,12 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::get('/notificaciones', [VacanteController::class, 'estado'])->name('vacantes.estado');
 });
 
+//pagina de inicio
 
+Route::get('/', InicioController::class)->name('inicio');
+
+//categorias
+Route::get('/categorias/{categoria}', [CategoriaController::class, 'show'])->name('categorias.show');
 //enviar datos para una vacante
 
 Route::get('/candidatos/{id}', [CandidatoController::class, 'index'])->name('candidatos.index');
