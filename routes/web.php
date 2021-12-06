@@ -43,10 +43,10 @@ Route::group(['middleware' => ['auth', 'verified']], function () {
     Route::post('/vacantes/borrarimagen', [VacanteController::class, 'borrarimagen'])->name('vacantes.borrar');
 
     //cambiar estadod de vacante
-    Route::get('/vacantes/{vacante}', [NotificacionesController::class, 'notificaciones'])->name('notificaciones');
+    Route::get('/vacantes/{vacante}', [VacanteController::class, 'estado'])->name('vacantes.estado');
 
     //notificaciones
-    Route::get('/notificaciones', [VacanteController::class, 'estado'])->name('vacantes.estado');
+    Route::get('/notificaciones', NotificacionesController::class)->name('notificaciones');
 });
 
 //pagina de inicio
@@ -61,4 +61,9 @@ Route::get('/candidatos/{id}', [CandidatoController::class, 'index'])->name('can
 Route::post('/candidatos/store', [CandidatoController::class, 'store'])->name('candidatos.store');
 
 //muestra los trabajos sin authentication
+
+Route::get('/busqueda/buscar', [VacanteController::class, 'resultados'])->name('vacantes.resultados');
+Route::post('/busqueda/buscar', [VacanteController::class, 'buscar'])->name('vacantes.buscar');
+
+
 Route::get('/vacantes/{vacante}', [VacanteController::class, 'show'])->name('vacantes.show');

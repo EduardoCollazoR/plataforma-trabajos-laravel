@@ -2,6 +2,8 @@
 
 @section('navegacion')
 
+@include('ui.categoriasnav')
+
 @endsection
 
 @section('content')
@@ -12,6 +14,8 @@
         </p>
         <h1 class="mt-2 sm:mt-4 text-3xl font-bold text-gray-700 leading-tight">Encuentra un trabajo remoto</h1>
         <span class="text-teal-500 block">Para Desarrolladores / Disenadores Web</span>
+
+        @include('ui.buscar')
     </div>
 
     <div class="block lg:w-1/2">
